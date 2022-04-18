@@ -1,2 +1,2 @@
-# Windows-command-line-notes
+# Notes
 take notes
