@@ -1,5 +1,7 @@
 # Java笔记
 
+[TOC]
+
 ## 多线程数据传递
 
 1.通过构造函数传递
@@ -109,6 +111,7 @@ public class MyThread3 extends Thread {
     public static void main(String[] args) throws Exception {
         MyThread3 thread = new MyThread3();
         thread.start();
+        // join方法会等待线程执行结束后才会继续执行
         thread.join();
         System.out.println("value1:" + thread.value1);
         System.out.println("value2:" + thread.value2);
