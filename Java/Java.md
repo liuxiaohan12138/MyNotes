@@ -1,6 +1,5 @@
 ---
 title: java笔记
-date: 2022-04-19 00:08:35
 ---
 
 [TOC]
@@ -17,6 +16,15 @@ str.replaceAll( "\\s+", " " );
 
 ```
 str.substring(0, buf.length()-1)
+```
+
+3.删除最后一个斜线后的字符串
+
+```
+// http://stackoverflow.com/questions/ask -> http://stackoverflow.com/questions/
+String str="http://stackoverflow.com/questions/ask";
+int index=str.lastIndexOf('/');
+str = str.substring(0,index);
 ```
 
 
