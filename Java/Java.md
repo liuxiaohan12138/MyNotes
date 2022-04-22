@@ -146,3 +146,114 @@ public class MyThread3 extends Thread {
 }
 ```
 
+
+
+# WebSocket
+
+pom.xml添加依赖
+
+```
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+```
+
+添加配置类
+
+```
+@Configuration
+public class WebSocketConfig {
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+}
+```
+
+添加服务类
+
+```
+@ServerEndpoint("/websocket")
+@Component
+public class WebSocketServer {
+
+    static Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
+    
+    private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<WebSocketServer>();
+    
+    private Session session;
+
+    @OnOpen
+    public void onOpen(Session session) {
+        this.session = session;
+        webSocketSet.add(this);
+        try {
+            sendMessage("连接成功");
+        } catch (IOException e) {
+            logger.error("IO异常");
+        }
+    }
+
+    @OnClose
+    public void onClose() {
+        webSocketSet.remove(this);
+        logger.info("连接关闭");
+    }
+
+    @OnMessage
+    public void onMessage(String message) {
+        for (WebSocketServer item : webSocketSet) {
+            try {
+                item.sendMessage(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @OnError
+    public void onError(Throwable error) {
+        error.printStackTrace();
+    }
+
+    public static void sendInfo(String message){
+        for (WebSocketServer item : webSocketSet) {
+            try {
+                item.sendMessage(message);
+            } catch (IOException e) {
+                continue;
+            }
+        }
+    }
+
+    public void sendMessage(String message) throws IOException {
+        this.session.getBasicRemote().sendText(message);
+    }
+    
+}
+```
+
+JavaScript
+
+```
+    let socket;
+    if(typeof(WebSocket) == "undefined") {
+        alert("浏览器不支持WebSocket");
+    }else{
+        index = new WebSocket("ws://localhost:****/websocket");
+        index.onopen = function() {
+            console.log("连接成功");
+        };
+        index.onmessage = function(msg) {
+            console.log("收到服务器消息:" + msg.data);
+        };
+        index.onclose = function() {
+            console.log("连接关闭");
+        };
+        index.onerror = function() {
+            console.log("连接出错");
+        }
+    }
+```
+
