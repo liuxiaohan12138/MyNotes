@@ -234,26 +234,17 @@ public class WebSocketServer {
 }
 ```
 
-JavaScript
+
+
+# maven
+
+依赖搜索
+
+https://developer.aliyun.com/mvn/search
+
+打包
 
 ```
-    let socket;
-    if(typeof(WebSocket) == "undefined") {
-        alert("浏览器不支持WebSocket");
-    }else{
-        index = new WebSocket("ws://localhost:****/websocket");
-        index.onopen = function() {
-            console.log("连接成功");
-        };
-        index.onmessage = function(msg) {
-            console.log("收到服务器消息:" + msg.data);
-        };
-        index.onclose = function() {
-            console.log("连接关闭");
-        };
-        index.onerror = function() {
-            console.log("连接出错");
-        }
-    }
+mvn clean install -Dmaven.test.skip=true
 ```
 
