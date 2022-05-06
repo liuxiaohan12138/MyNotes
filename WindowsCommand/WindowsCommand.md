@@ -22,5 +22,8 @@ wmic process get caption,commandline /value
 
 # 查询某一个进程的命令行参数
 wmic process where caption="cmd.exe" get caption,commandline /value
+
+# 复制文件夹
+xcopy 源文件夹路径 目标文件夹路径 /e/h/i/y
 ```
 

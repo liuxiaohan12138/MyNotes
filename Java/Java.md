@@ -27,6 +27,12 @@ int index=str.lastIndexOf('/');
 str = str.substring(0,index);
 ```
 
+4.路径拼接
+
+```
+Paths.get(a, b);
+```
+
 
 
 # 多线程数据传递
@@ -232,6 +238,23 @@ public class WebSocketServer {
     }
     
 }
+```
+
+
+
+# json
+
+读取json文件数据
+
+```
+File jsonFile = new File(jsonPath);
+FileReader reader=new FileReader(jsonFile);
+Gson gson=new Gson();
+ArrayList<Compiler> datalist= gson.fromJson(reader, ArrayList.class);
+for (Object o: datalist){
+String s = o.toString();
+int index = s.indexOf("=");
+｝
 ```
 
 
