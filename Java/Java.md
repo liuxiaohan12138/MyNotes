@@ -33,6 +33,14 @@ str = str.substring(0,index);
 Paths.get(a, b);
 ```
 
+5.字符串拼接
+
+```
+// StringBuffer StringBuilder  String+=会创建临时字符串
+StringBuilder sb = new StringBuilder();
+sb.append(argument + " ");
+```
+
 
 
 # 多线程数据传递
