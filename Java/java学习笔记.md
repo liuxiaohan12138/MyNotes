@@ -76,3 +76,31 @@ per1.tell(); //进行方法的调用
 所谓的垃圾空间指的就是没有任何栈内存所指向的堆内存空间，所有的垃圾将被GC不定期进行回收并且释放无用内存空间，但是如果垃圾过多，一定将影响到GC的处理性能，从而降低整体的程序性能。实际开发之中，对于垃圾的产生应该越少越好。
 
 一个栈内存只能够保存有一个堆内存的地址数据，如果发生改变，则之前的地址数据将从此栈内存中彻底消失。
+
+## 成员属性封装
+
+设置或取得属性可以使用setXxx()、getXxx()方法
+
+```java
+class Person{
+    private String name;
+    private int age;
+    public void tell(){
+        System.out.println("姓名：" + name + "，年龄：" + age);
+    }
+    public void setName(String n){
+        name = n;
+    }
+    public void setAge(int a){
+        age = a;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getAge(){
+        return ages;
+    }
+}
+```
+
+类中的所有属性都必须使用private封装，并且属性进行访问提供setter、getter方法
