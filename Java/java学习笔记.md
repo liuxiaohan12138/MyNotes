@@ -104,3 +104,28 @@ class Person{
 ```
 
 类中的所有属性都必须使用private封装，并且属性进行访问提供setter、getter方法
+
+## 构造方法与匿名对象
+
+```java
+public class Person {
+    public String name; // 姓名
+    public int age; // 年龄
+
+    // 定义构造方法，为属性初始化
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 获取信息的方法
+    public void tell() {
+        System.out.println("姓名：" + name + "，年龄：" + age);
+    }
+
+    public static void main(String[] args) {
+        new Person("张三", 30).tell(); // 匿名对象
+    }
+}
+```
+
