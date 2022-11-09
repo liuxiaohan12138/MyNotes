@@ -129,3 +129,100 @@ public class Person {
 }
 ```
 
+# this
+
+当前类中的属性：this.属性
+
+当前类中的方法（普通方法、构造方法）：this()    this.方法名称()
+
+描述当前对象：使用this调用当前类中的属性
+
+
+
+对于简单java类而言，其核心的开发结构如下：
+
+类名称一定要有意义，可以明确的描述某一类事物；
+
+类之中的所有属性都必须使用private进行封装，同时封装后的属性必须提供setter getter方法
+
+类之中可以提供有无数多个构造方法，但是必须要保留有无参构造方法
+
+类之中不允许出现任何的输出语句，所有内容的获取必须返回
+
+
+
+# static
+
+在一个类之中，所有的属性一旦定义了实际上内容都交由各自的堆内存空间所保存。
+
+```java
+class Person{
+    private String name;
+    private int age;
+    String country = "中华民国";
+    public Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    public String getInfo(){
+        return this.name + this.age  + this.country
+    }
+}
+
+public class JavaDemo {
+    public static void main(String args[]){
+        Person perA = new Person("张三"， 10);
+        Person perB = new Person("李四"， 10);
+        Person perC = new Person("王五"， 11);
+        perA.country = "中华人民共和国";
+        //只有perA的country改变
+    }
+}
+
+class Person{
+    private String name;
+    private int age;
+    // 公共属性
+    static String country = "中华民国";
+    public Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    public String getInfo(){
+        return this.name + this.age  + this.country
+    }
+}
+
+public class JavaDemo {
+    public static void main(String args[]){
+        Person perA = new Person("张三"， 10);
+        Person perB = new Person("李四"， 10);
+        Person perC = new Person("王五"， 11);
+        perA.country = "中华人民共和国";
+        //所有对象中的country都发生改变
+    }
+}
+```
+
+
+
+static方法只允许调用static属性或static方法
+
+非static方法允许调用static属性或static方法
+
+# 数组的定义与使用
+
+数组的动态初始化：
+
+​	声明并初始化数组：
+
+​		数据类型 数组名称[] =  new 数据类型[长度];
+
+​		数据类型[] 数组名称 =  new 数据类型[长度];
+
+数组的静态初始化：在数组定义的时候就为其设置好了里面的内容
+
+​	数据类型 数组名称[] = {数据1，数据2，数据3};
+
+​	数据类型 数组名称[] = new 数据类型[] {数据1，数据2，数据3};
+
