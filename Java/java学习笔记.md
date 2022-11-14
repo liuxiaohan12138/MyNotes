@@ -226,3 +226,61 @@ static方法只允许调用static属性或static方法
 
 ​	数据类型 数组名称[] = new 数据类型[] {数据1，数据2，数据3};
 
+![image-20221114224056349](pic\image-20221114224056349.png)
+
+## 二维数组
+
+数组的动态初始化：
+
+​	数据类型 数组名称[ ] [ ]= new 数据类型[行个数] [列个数];
+
+数组的静态初始化：在数组定义的时候就为其设置好了里面的内容
+
+​	数据类型 数组名称[] = {数据1，数据2，数据3};
+
+​	数据类型 数组名称[] = new 数据类型[ ] [ ] {{数据，数据，...},{数据，数据，...},{数据，数据，...}};
+
+## 数组排序
+
+```java
+int data[] = new int[]{8,9,0,2,3,5,10,7,6,1};
+for(int j=0; j < data.length - j; j++) {
+    // 最后一个一定是最大的数，所以-j
+    for(int i=0; i < data.length - j - 1; i++) {
+        if (data[i] > data[i+1]) {
+            int temp = data[i];
+            data[i] = data[i+1];
+            data[i+1] = temp;
+        }
+	}
+}
+```
+
+## 数组转置
+
+```java
+// 逆序
+int data[] = new int[] {1,2,3,4,5,6,7,8,9};
+
+// 方法1
+int result[] = new int[data.length];
+int index = result.length-1;
+for(int i=0; i < data.length; i++){
+    result[index--] = data[i];
+}
+data = result;
+
+// 方法2
+int count = data.length / 2;
+int head = 0;
+int tail = data.length - 1;
+for(int i=0; i<data.count; i++) {
+    int temp = data[head];
+    data[head] = data[tail];
+    data[tail] = temp;
+    head ++;
+    tail --;
+}
+```
+
+方法1循环次数较多，产生垃圾；方法2时间复杂度较低，提升性能
