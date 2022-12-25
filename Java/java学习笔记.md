@@ -304,3 +304,154 @@ int ...data 本质是数组
 缺陷：长度是固定的
 
 优势：数据线性保存，根据索引访问，速度较快（时间复杂度为1）
+
+
+
+# String类特点分析
+
+## 字符串比较
+
+```
+String A = "A";
+String B = "B";
+A.equals(B);
+```
+
+==是数值比较，比较的是两个内存的地址数值；
+
+equals()可以直接进行字符串内容的判断。
+
+将字符串的常量写在前面可以回避空的判断："A".euqals(A);
+
+## String类实例化
+
+String A = "ABCD";
+
+在采用直接赋值的处理过程中，字符串可以实现池数据的自动保存，再有相同的数据定义时可以减少对象的产生，提升操作性能.
+
+
+
+String str = new String("wdwd");
+
+采用构造方法实例化String类对象时不会自动保存到池数据中
+
+## String对象常量池
+
+静态常量池：指的是程序(*.class)在加载的时候会自动讲此程序之中保存的字符串、普通的常量、类和方法的信息等等，全部进行分配
+
+运行时常量池：当一个程序(*.class)加载之后，里面可能有一些变量，这个时候提供的常量池
+
+
+
+# 继承
+
+## 继承的实现
+
+class 子类 extends 父类{}
+
+## 子类对象实例化流程
+
+即使没有进行父类对象实例化，也会由系统自动调用父类的构造方法，自动化实例化父对象
+
+
+
+# 重写
+
+优化父类的功能
+
+```
+class Channel{
+	public void connect(){
+		return "dad";
+	}
+}
+
+class DatabaseChannel extends Channel{
+	public void connect(){
+		return "son";
+	}
+}
+```
+
+属性覆盖无法进行子类覆盖父类中的私有属性
+
+final：定义不能被继承的类，不能被复写的方法、属性
+
+
+
+# 多态
+
+## 方法的多态
+
+```
+pubilc void print(){
+	System.out.println("print");
+}
+
+pubilc void print(String str){
+	System.out.println("print:" + str);
+}
+```
+
+## 对象向上转型
+
+```
+class Message{
+	public void print(){
+		System.our.println("连接");
+	}
+}
+
+class DataBaseMessage extend Message{
+	public void print(){
+		System.our.println("数据库连接");
+	}
+}
+
+public class JavaDemo{
+	public static void main(String[] args){
+		Message msg = new DataBaseMessage();
+		msg.print();
+	}
+}
+```
+
+## 对象向下转型
+
+```
+class Message{
+	public void print(){
+		System.our.println("连接");
+	}
+}
+
+class DataBaseMessage extend Message{
+	public void print(){
+		System.our.println("数据库连接");
+	}
+}
+
+public class JavaDemo{
+	public static void main(String[] args){
+		// 向上转型
+		Message msg = new DataBaseMessage();
+		msg.print();
+		// 向下转型
+		DataBaseMessage dmsg = (DataBaseMessage) msg;
+	}
+}
+```
+
+## instanceof关键字
+
+判断某个实例是否是某个类的对象
+
+对象 instanceof 类
+
+
+
+# Object类
+
+不能有继承关系
+
+equals可以进行所有类型比较
