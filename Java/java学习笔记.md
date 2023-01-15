@@ -455,3 +455,56 @@ public class JavaDemo{
 不能有继承关系
 
 equals可以进行所有类型比较
+
+
+
+## 抽象类的定义与使用
+
+抽象类的主要作用在于对子类中覆盖写法进行约定，在抽象类里面可以去定义一些一些抽象方法。抽象方法的是使用了abstract关键字定义的并且没有提供方法体的方法，而抽象方法所在的类必须为抽象类，抽象类必须使用abstract关键字来定义。
+
+
+
+```java
+abstract class Message{
+	private String type;
+    public abstract String getConnectInfo();
+}
+```
+
+
+
+相关说明
+
+1.在定义抽象类的时候绝对不能使用final关键字来进行定义，抽象类必须有子类，final定义的类没有子类
+
+2.抽象类是作为一个普通类的加强版出现的（抽象类的组成就是在普通类的基础上扩展而来的，只是追加了抽象方法）
+
+3.抽象类中允许没有抽象方法，但是即使没有抽象方法，也无法直接使用关键字new实例化抽象类对象
+
+4.抽象类中可以提供有static方法，并且该方法不受到抽象类对象的局限。
+
+
+
+## 包装类
+
+```java
+class Int{
+    private int data;
+    public Int(int data){
+        this.data=data;
+    }
+    public int intValue(){
+        return this.data;
+    }
+}
+
+public class demo{
+    public static void main(String args[]){
+        // 装箱：将基本数据类型保存在包装类中
+        Int temp = new Int(10);
+        // 拆箱：从包装类对象中获取基本数据
+        int x = temp.intValue();
+    }
+}
+```
+
